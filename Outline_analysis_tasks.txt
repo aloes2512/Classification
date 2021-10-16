@@ -1,4 +1,7 @@
-1. Download data from "https://udo.lubw.baden-wuerttemberg.de/public/" and "https://www.stadtklima-stuttgart.de/index.php?klima_messdaten_download"
-2. Import into R, cleaning, formating of raw data and storage as "Rdata" as lists and dataframes
-3. Selection of stations and variables which are representative for analysis of NO2 immissions: "map_list_tbl.R". 
+1. Download data from "https://udo.lubw.baden-wuerttemberg.de/public/" and 
+                  "https://www.stadtklima-stuttgart.de/index.php?klima_messdaten_download"
+2. Import into R, cleaning, formating of raw data and storage as "Rdata" as lists 
+                                      and dataframes
+3. Selection of stations and variables which are representative for analysis of 
+                                      NO2 immissions: "map_list_tbl.R". 
 15 levels (stations) Timeseries of 15 stations of NO2 immissions : "BW_stations_NO2_tbl"
