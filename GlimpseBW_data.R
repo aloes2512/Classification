@@ -19,6 +19,8 @@ BW_mean_median_NO2<-map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"N
   mean(x$NO2,na.rm=TRUE)-
     median(x$NO2,na.rm=TRUE),NA))
 )
+BW_median_NO2<- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"WG"),
+                                                         median(x$WG,na.rm=TRUE),NA )))
 BW_var_NO2 <- map_dbl(BW_list_tbl, function(x) (ifelse (comp_detect (x,"NO2"),
   var(x$NO2,na.rm=TRUE),NA)))
 BW_mean_WG <- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"WG"),
@@ -26,7 +28,7 @@ BW_mean_WG <- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"WG"),
 
 BW_var_WG <-map_dbl(BW_list_tbl,function(x) { ifelse(comp_detect (x,"WG"),var(x$WG,na.rm=TRUE),NA) })
 
-
+BW_summary_data <- tibble(NO2_mean=)
 
 
 
