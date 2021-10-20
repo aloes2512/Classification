@@ -4,7 +4,6 @@ list.files(path=url_Rdat)
 load(file.path(url_Rdat,"BW_list_tbl.RData"))
 summary(BW_list_tbl)
 BW_list_tbl$Man_Mitte<- NULL
-BW_list_tbl %>% head(30)
 "NO2" %in% (names(BW_list_tbl$Alb))
 BW_list_tbl$Alb%>% summary()
 comp_detect <- function(df,cmp) {
@@ -33,20 +32,26 @@ plt_NO2_trnd <- function(df) {
   ggsave(paste0("NO2_trend_20y_",first(df$name),".png"),path = "figs/")
 }
 map(BW_list_tbl,plt_NO2_trnd)
-BW_mean_median_NO2<-map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"NO2"),
-  mean(x$NO2,na.rm=TRUE)-
-    median(x$NO2,na.rm=TRUE),NA))
+BW_mean_NO2<-map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"NO2"),
+  mean(x$NO2,na.rm=TRUE),NA))
 )
 BW_median_NO2<- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"WG"),
-                                                         median(x$WG,na.rm=TRUE),NA )))BW_var_NO2 <- map_dbl(BW_list_tbl, function(x) (ifelse (comp_detect (x,"NO2"),
+                                                         median(x$WG,na.rm=TRUE),NA )))
+BW_var_NO2 <- map_dbl(BW_list_tbl, function(x) (ifelse (comp_detect (x,"NO2"),
   var(x$NO2,na.rm=TRUE),NA)))
 BW_mean_WG <- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"WG"),
                                                        mean(x$WG,na.rm=TRUE),NA )))
 
-BW_var_WG <-map_dbl(BW_list_tbl,function(x) { ifelse(comp_detect (x,"WG"),var(x$WG,na.rm=TRUE),NA) })
+BW_var_WG <-map_dbl(BW_list_tbl,function(x) (ifelse(comp_detect (x,"WG"),
+                                                     var(x$WG,na.rm=TRUE),NA) ))
 
-BW_summary_data <- tibble(NO2_mean=)
-
+BW_summary_data <- tibble(Station = names(BW_list_tbl),
+                          NO2_mean = BW_mean_NO2,
+                          NO2_median = BW_median_NO2,
+                          NO2_var = BW_var_NO2,
+                          WG_mean = BW_mean_WG,
+                          WG_var = BW_var_WG)
+BW_summary_data%>% head()
 
 
 
