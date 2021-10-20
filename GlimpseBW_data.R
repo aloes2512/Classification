@@ -30,7 +30,8 @@ plt_NO2_trnd <- function(df) {
   ggsave(paste0("NO2_trend_20y_",first(df$name),".png"),path = "figs/")
 
   return(plt)
-    }
+}
+map(BW_list_tbl,plt_NO2_trnd)
 plt_NO2_trnd(BW_list_tbl$Alb)
 plt_NO2_trnd(BW_list_tbl$Brn)
 plt_NO2_trnd(BW_list_tbl$Egg)
