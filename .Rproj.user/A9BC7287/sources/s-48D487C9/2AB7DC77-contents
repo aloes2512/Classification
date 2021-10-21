@@ -1,0 +1,8 @@
+comp_detect(BW_list_tbl$Alb,"NO2")
+BW_list_tbl$Alb%>% na.omit()%>%
+  ggplot(aes(x=datetime,y= NO2))+
+  geom_point(size = 0.001)+
+  geom_smooth(method = "lm",col= "red")+
+  ggtitle("NO2-immissions 20 years",
+          subtitle = "Schw. Alb 47650")
+ggsave("NO2_trend_20y_47650.png",path = "figs/")
