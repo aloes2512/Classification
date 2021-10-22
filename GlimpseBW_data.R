@@ -36,18 +36,24 @@ BW_mean_WG <- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"WG"),
 BW_var_WG <-map_dbl(BW_list_tbl,function(x) (ifelse(comp_detect (x,"WG"),
                                                   var(x$WG,na.rm=TRUE),NA) ))
 
-BW_summary_statistic <- tibble (Station =  names(BW_list_tbl),
-                          NO2_mean=  BW_mean_NO2,
-                          NO2_median=BW_median_NO2,
-                          NO2_var =  BW_var_NO2,
-                          WG_mean =  BW_mean_WG,
-                          WG_var =   BW_var_WG )
+
 # summary of mean and median NO2, WG
 BW_NO2_WG_summary<-BW_summary_statistic[-23,]%>% arrange(NO2_mean)%>% knitr::kable(digits=1)
 # O3
 BW_mean_O3<-map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"O3"),
                                                          mean(x$O3,na.rm=TRUE),NA)))
-BW_median_O3<--map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"O3"),
-                                                           -median(x$O3,na.rm=TRUE),NA)))
+BW_median_O3<- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"O3"),
+                                                         median(x$O3,na.rm=TRUE),NA )))
+BW_var_O3 <- map_dbl(BW_list_tbl, function(x) (ifelse (comp_detect (x,"O3"),
+                                                        var(x$O3,na.rm=TRUE),NA)))
 
-median(BW_list_tbl$Alb$O3, na.rm = TRUE)
+BW_statistic <- tibble (Station =  names(BW_list_tbl),
+                                NO2_mean=  BW_mean_NO2,
+                                NO2_median=BW_median_NO2,
+                                NO2_var =  BW_var_NO2,
+                                WG_mean =  BW_mean_WG,
+                                WG_var =   BW_var_WG,
+                                O3_mean =  BW_mean_O3,
+                                O3_median= BW_median_O3,
+                                O3_var =   BW_var_O3)
+save(BW_statistic, file = file.path(url_Rdat,"BW_statistic.RData"))
