@@ -47,5 +47,7 @@ BW_NO2_WG_summary<-BW_summary_statistic[-23,]%>% arrange(NO2_mean)%>% knitr::kab
 # O3
 BW_mean_O3<-map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"O3"),
                                                          mean(x$O3,na.rm=TRUE),NA)))
+BW_median_O3<--map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"O3"),
+                                                           -median(x$O3,na.rm=TRUE),NA)))
 
-
+median(BW_list_tbl$Alb$O3, na.rm = TRUE)

@@ -29,7 +29,7 @@ Heid_O3 <- rd_xlsx_lubw(path,"Heid_4453_O3_00_21.xlsx")
 Heil_O3 <-rd_xlsx_lubw(path,"Heil_4461_O3_00_21.xlsx")
 Lbg_O3 <-rd_xlsx_lubw(path,"Lbg_4463_O3_00_20.xlsx")
 Rt_O3<- rd_xlsx_lubw(path,"Rt_4470_O3_00_21.xlsx")
-Odw_O3 <- rd_xlsx_lubw(path,"Odw_76118_O3_00_11.xlsx")%>% mutate(stnd= format(datetime,"%H"))
+Odw_O3 <- rd_xlsx_lubw(path,"Odw_76118_O3_00_11.xlsx")
 head(Odw_O3)
 Odw_O3$datetime<- seq(from= first(Odw_O3$datetime), by = "30 min",length.out=NROW(Odw_O3))
 range(Odw_O3$datetime)
@@ -44,8 +44,6 @@ BW_list_tbl$Lbg_weimar<-BW_list_tbl$Lbg_weimar%>%left_join(Lbg_O3)%>% mutate(O3=
 BW_list_tbl$Rt_pomol<-BW_list_tbl$Rt_pomol%>% left_join(Rt_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
 BW_list_tbl$Odw<- BW_list_tbl$Odw%>% left_join(Odw_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
 
-# correct variable name Sws datetime wrong name
-load(file.path(url_Rdat,"BW_list_tbl.RData"))
 #BW_list_tbl$Sws<-BW_list_tbl$Sws %>% dplyr::select(station,name,datetime =stnd,NO2,Temp,WG,O3,NO)
 save(BW_list_tbl,file = file.path(url_Rdat,"BW_list_tbl.RData"))
 # Mannheim- Mitte  4473
