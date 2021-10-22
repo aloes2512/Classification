@@ -5,8 +5,8 @@ library(xts)
 library(stringr)
 path<-"~/Documents/Luftqualitaet/Daten/BW"
 url_Rdat<-"~/Documents/Luftqualitaet/Daten/BW_Rdat/"
-list.files(path)
-load(file= file.path(path,"BW.RData"))
+list.files(url_Rdat)
+load(file= file.path(url_Rdat,"BW.RData"))# BW.all_data
 names(BW.all_data)
 load(file.path(url_Rdat,"BW_list_tbl.RData"))
 names(BW_list_tbl)
@@ -21,7 +21,31 @@ rd_xlsx_lubw<- function(path,dat.file){df<-read_xlsx(file.path(path,dat.file),sk
   dplyr::select(station,datetime,Wert)
 return(df)
 }
+# add O3 measurements
+Alb_O3<-rd_xlsx_lubw(path,"Alb_47650_O3_00_21.xlsx")
+Egg_O3<-rd_xlsx_lubw(path,"Egg_4445_O3_00_21.xlsx")
+Fri_O3<-rd_xlsx_lubw(path,"Fri_4471_O3_00_21.xlsx")
+Heid_O3 <- rd_xlsx_lubw(path,"Heid_4453_O3_00_21.xlsx")
+Heil_O3 <-rd_xlsx_lubw(path,"Heil_4461_O3_00_21.xlsx")
+Lbg_O3 <-rd_xlsx_lubw(path,"Lbg_4463_O3_00_20.xlsx")
+Rt_O3<- rd_xlsx_lubw(path,"Rt_4470_O3_00_21.xlsx")
+Odw_O3 <- rd_xlsx_lubw(path,"Odw_76118_O3_00_11.xlsx")%>% mutate(stnd= format(datetime,%H))
+head(Fri_O3)
+Frei_O3<-rd_xlsx_lubw(path,"Frei_4462_O3_00_21.xlsx")
+BW_list_tbl$Alb<-BW_list_tbl$Alb%>% left_join(Alb_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
+BW_list_tbl$Egg<-BW_list_tbl$Egg%>% left_join(Egg_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
+BW_list_tbl$Frei<-BW_list_tbl$Frei%>% left_join(Frei_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
+BW_list_tbl$Fri<-BW_list_tbl$Fri%>% left_join(Fri_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
+BW_list_tbl$Heid<-BW_list_tbl$Heid%>%left_join(Heid_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
+BW_list_tbl$Heil<-BW_list_tbl$Heil%>%left_join(Heil_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
+BW_list_tbl$Lbg_weimar<-BW_list_tbl$Lbg_weimar%>%left_join(Lbg_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
+BW_list_tbl$Rt_pomol<-BW_list_tbl$Rt_pomol%>% left_join(Rt_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
+BW_list_tbl$Odw%>% left_join(Odw_O3)%>% mutate(O3=Wert)%>% dplyr::select(-Wert)
 
+# correct variable name Sws datetime wrong name
+load(file.path(url_Rdat,"BW_list_tbl.RData"))
+#BW_list_tbl$Sws<-BW_list_tbl$Sws %>% dplyr::select(station,name,datetime =stnd,NO2,Temp,WG,O3,NO)
+save(BW_list_tbl,file = file.path(url_Rdat,"BW_list_tbl.RData"))
 # Mannheim- Mitte  4473
 Man_NO2<-rd_xlsx_lubw(path,"Man_4473_NO2_00_21.xlsx")%>%
 mutate(name="Man-Mitte")%>%
@@ -47,6 +71,27 @@ Man_WR<- rd_xlsx_lubw(path,"Man_4473_WR_00_21.xlsx")%>%
   mutate(name="Man-Mitte")%>%
   dplyr::select(station,name,datetime,WR=Wert)
 head(Man_WR)
+# Stuttgart am Neckartor
+Nck_NO2<-rd_xlsx_lubw(path,"Nck_76361_NO2_03_21.xlsx")%>%
+  mutate(name="Nck")%>%
+  dplyr::select(station,name,datetime,NO2=Wert)
+head(Nck_NO2)
+Nck_NO<-rd_xlsx_lubw(path,"Nck_76361_NO_03_21.xlsx")%>%
+  mutate(name="Nck")%>%
+  dplyr::select(station,name,datetime,NO=Wert)
+head(Nck_NO)
+Nck_PM10<-rd_xlsx_lubw(path,"Nck_76361_PM10_20_21.xlsx")%>%
+  mutate(name="Nck")%>%
+  dplyr::select(station,name,datetime,PM10=Wert)
+head(Nck_PM10)
+Nck_PM2.5<-rd_xlsx_lubw(path,"Nck_76361_PM2.5_20_21.xlsx")%>%
+  mutate(name="Nck")%>%
+  dplyr::select(station,name,datetime,PM2.5=Wert)
+head(Nck_PM2.5)
+Nck<- left_join(Nck_NO2,Nck_NO)
+Nck_dat<-Nck%>% 
+  left_join(Nck_PM10)%>% 
+  left_join(Nck_PM2.5)
 #replace old data
 BW_list_tbl$Man_Mitte%>% head()
 Man_Mitte<- left_join(Man_NO2,Man_Temp)%>% 
@@ -55,7 +100,13 @@ Man_Mitte<- left_join(Man_NO2,Man_Temp)%>%
             left_join(Man_NO)%>% 
             left_join(Man_O3)
 BW_list_tbl$Man_Mitte<- Man_Mitte
+summary(BW_list_tbl)
+summary(Man_Mitte)# measurements from 2000-01-01 to 2013-12-30
+BW_list_tbl$Stg_Nck<-Nck_dat
+BW_list_tbl$Nck<- Nck
 save(BW_list_tbl,file= paste0(url_Rdat,"BW_list_tbl.RData"))
+BW.all_data$Man_Mitte <- Man_Mitte
+save(BW.all_data, file = file.path(url_Rdat,"BW.RData"))
 # station Rt Pomologie
 #====================
 BW.all_data$Rt %>% summary()
@@ -351,3 +402,6 @@ Odw_WG<-read_xlsx(file.path(path,"Odw_76118_WG_00_20.xlsx"),skip=10)%>%
 # save all updates
 save(BW.all_data,file= file.path(path,"BW.RData"))
 BW.all_data$Odw$Odw.no2%>% .[[2]]%>% last()
+# BW List tbl update
+BW_list_tbl$Stg_SZ_afu%>% summary()
+BW_list_tbl$Stg_Schwz%>% summary()
