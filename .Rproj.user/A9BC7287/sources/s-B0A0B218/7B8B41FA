@@ -1,0 +1,27 @@
+{
+    "id": "7B8B41FA",
+    "path": "~/projects/Classification/Update_Stgt_data.R",
+    "project_path": "Update_Stgt_data.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1635108861137.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "29,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1635111416,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1635111416649,
+    "read_only": false,
+    "read_only_alternatives": []
+}
