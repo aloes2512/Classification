@@ -1,0 +1,512 @@
+datetime= ymd_hm(`Datum / Uhrzeit`),
+NO2=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,datetime,NO2)
+BW.all_data$Rt$Rt.no2<-Rt_NO2
+Rt_NO2<- read_xlsx(file.path(path,"RT_4470_NO2_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+NO2=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,NO2)
+BW.all_data$Rt$Rt.no2<-Rt_NO2
+Rt_SO2<- read_xlsx(file.path(path,"RT_4470_SO2_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+SO2=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,SO2)
+BW.all_data$Rt$Rt.so2<-Rt_SO2
+#RT_Temp========
+BW.all_data$Rt$Rt.temp%>% head()
+#update
+Rt_Temp<- read_xlsx(file.path(path,"RT_4470_Temp_03_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Temp=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Temp)
+head(Rt_Temp)
+summary(Rt_Temp)
+Rt_Glbl<- read_xlsx(file.path(path,"RT_Glbl.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Glbl=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Glbl)
+head(Rt_Glbl)
+summary(Rt_Glbl)
+Rt_Glbl%>% summary()
+#RT_Glob========
+RT_Glbl<- read_xlsx(file.path(path,"RT_4470_Glbl_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Glbl=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,datetime,Glbl)
+#RT_Glob========
+Rt_Glbl<- read_xlsx(file.path(path,"RT_4470_Glbl_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Glbl=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,datetime,Glbl)
+head(Rt_Glbl)
+BW.all_data$Rt$Rt.glob<-RT_Glbl
+#RT_WG==============
+Rt_WG<-read_xlsx(file.path(path,"Rt_4470_WG_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(station),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+WG=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,WG)
+read_xlsx(file.path(path,"Rt_4470_WG_00_21.xlsx"),skip=10)
+#RT_WG==============
+Rt_WG<-read_xlsx(file.path(path,"Rt_4470_WG_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+WG=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,WG)
+head(Rt_WG)
+BW.all_data$Rt$Rt.wg<-Rt_WG
+Rt_SO2<- read_xlsx(file.path(path,"RT_4470_SO2_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+SO2=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,SO2)
+BW.all_data$Rt$Rt.so2<-Rt_SO2
+#update
+Rt_Temp<- read_xlsx(file.path(path,"RT_4470_Temp_03_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Temp=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Temp)
+head(Rt_Temp)
+summary(Rt_Temp)
+head(Rt_Temp)
+#update Temp
+Rt_Temp<- read_xlsx(file.path(path,"RT_4470_Temp_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Temp=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Temp)
+#update Temp
+Rt_Temp<- read_xlsx(file.path(path,"RT_4470_Temp_03_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Temp=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Temp)
+head(Rt_Temp)
+summary(Rt_Temp)
+#update Temp
+Rt_Temp<- read_xlsx(file.path(path,"RT_4470_Temp_03_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Temp=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Temp)
+head(Rt_Temp)
+summary(Rt_Temp)
+BW.all_data$Rt$Rt.temp<-Rt_Temp
+Rt_Glbl
+#RT_Glob========
+Rt_Glbl<- read_xlsx(file.path(path,"RT_4470_Glbl_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Glbl=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Glbl)
+head(Rt_Glbl)
+BW.all_data$Rt$Rt.glob<-RT_Glbl
+#RT_WG==============
+Rt_WG<-read_xlsx(file.path(path,"Rt_4470_WG_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+WG=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,WG)
+head(Rt_WG)
+#update
+Rt_NO<- read_xlsx(file.path(path,"RT_4470_NO_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+NO=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,NO)
+summary(Rt_NO)
+BW.all_data$Rt$Rt.no<-Rt_NO
+RT_WR<-BW.all_data$Rt$Rt.wr
+RT_WR
+summary(RT_WR)
+Rt_WR<- read_xlsx(file.path(path,"RT_4470_WR_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+WR=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,WR)
+head(Rt_WR)
+summary(Rt_WR)
+BW.all_data$Rt$Rt.wr
+BW.all_data$Rt$Rt.wr<-Rt_WR
+BW.all_data$Rt$Rt.no
+Rt_NO
+Rt_Temp
+BW.all_data$Rt$Rt.temp<-Rt_Temp
+Rt_O3<-read_xlsx(file.path(path,"RT_4470_O3_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+O3=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,O3)
+Rt_O3
+BW.all_data$Rt$Rt.o3<-Rt_O3
+save(BW.all_data,file= file.path(path,"BW.RData"))
+Rt_data<- left_join(Rt_NO2,Rt_NO)
+Rt_data
+Rt_data<- left_join(Rt_NO2,Rt_NO)%>%
+left_join(Rt_O3)
+Rt_data<- left_join(Rt_NO2,Rt_NO)%>%
+left_join(Rt_O3)%>%
+left_join(Rt_SO2)
+Rt_CO
+#RT_CO=======
+Rt_CO<-read_xlsx(file.path(path,"Rt_4470_CO_00_15.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+CO=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,datetime,CO)
+dim(Rt_CO)#[1] 280511      3
+range(RT_CO$datetime)
+range(Rt_CO$datetime)
+start<-ymd_h("2000-01-01 00",tz = "UTC") #RT_CO[1,2]%>%as.POSIXct(origin= "1970-01-01")
+NROW(Rt_CO)
+Rt_CO_indx<-seq(from= start, by = "30 min",length.out= NROW(Rt_CO))
+range(Rt_CO_indx)
+Rt_CO$datetime<-RT_CO_indx
+summary(Rt_CO)
+#RT_CO=======
+Rt_CO<-read_xlsx(file.path(path,"Rt_4470_CO_00_15.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+CO=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,CO)
+dim(Rt_CO)#[1] 280511      3
+range(Rt_CO$datetime)
+start<-ymd_h("2000-01-01 00",tz = "UTC") #RT_CO[1,2]%>%as.POSIXct(origin= "1970-01-01")
+Rt_CO_indx<-seq(from= start, by = "30 min",length.out= NROW(Rt_CO))
+range(Rt_CO_indx)
+Rt_CO$datetime<-RT_CO_indx
+summary(Rt_CO)
+head(Rt_CO)
+BW.all_data$Rt$Rt.co<-Rt_CO
+#RT_Glob========
+Rt_Glbl<- read_xlsx(file.path(path,"RT_4470_Glbl_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Glbl=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Glbl)
+head(Rt_Glbl)
+BW.all_data$Rt$Rt.glob<-Rt_Glbl
+#RT_WG==============
+Rt_WG<-read_xlsx(file.path(path,"Rt_4470_WG_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+WG=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,WG)
+summary(Rt_WG)
+BW.all_data$Rt$Rt.wg<-Rt_WG
+#update
+Rt_NO<- read_xlsx(file.path(path,"RT_4470_NO_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+NO=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,NO)
+summary(Rt_NO)
+BW.all_data$Rt$Rt.no<-Rt_NO
+Rt_NO2<- read_xlsx(file.path(path,"RT_4470_NO2_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+NO2=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,NO2)
+summary(Rt_NO2)
+BW.all_data$Rt$Rt.no2<-Rt_NO2
+Rt_SO2<- read_xlsx(file.path(path,"RT_4470_SO2_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+SO2=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,SO2)
+summary(Rt_SO2)
+BW.all_data$Rt$Rt.so2<-Rt_SO2
+#update Temp
+Rt_Temp<- read_xlsx(file.path(path,"RT_4470_Temp_03_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Temp=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Temp)
+summary(Rt_Temp)
+BW.all_data$Rt$Rt.temp<-Rt_Temp
+Rt_WR<- read_xlsx(file.path(path,"RT_4470_WR_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+WR=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,WR)
+head(Rt_WR)
+summary(Rt_WR)
+BW.all_data$Rt$Rt.wr<-Rt_WR
+#update
+BW.all_data$Rt$Rt.no<-Rt_NO
+BW.all_data$Rt$Rt.temp<-Rt_Temp
+Rt_O3<-read_xlsx(file.path(path,"RT_4470_O3_00_21.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+O3=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,O3)
+summary(Rt_O3)
+BW.all_data$Rt$Rt.o3<-Rt_O3
+save(BW.all_data,file= file.path(path,"BW.RData"))
+Rt_data<- left_join(Rt_NO2,Rt_NO)%>%
+left_join(Rt_O3)%>%
+left_join(Rt_Temp)%>%
+left_join(Rt_SO2)%>%
+left_join(Rt_CO)%>%
+left_join(R)
+Rt_data<- left_join(Rt_NO2,Rt_NO)%>%
+left_join(Rt_O3)%>%
+left_join(Rt_Temp)%>%
+left_join(Rt_SO2)%>%
+left_join(Rt_CO)%>%
+left_join(Rt_WG)%>%
+left_join(Rt_WR)%>%
+left_join(Rt_Glbl)
+BW_list_tbl$Rt_pomol<-Rt_data
+save(BW_list_tbl,file= file.path(url_Rdat,"BW_list_tbl.RData"))
+#' RT Globalstrahlung'
+Rt_Glbl<- read_xlsx(file.path(path,"RT_Glbl.xlsx"),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor("Rt_pomol"),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Glbl=as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Glbl)
+library(tidyverse)
+library(knitr)
+url_Rdat<- "~/Documents/Luftqualitaet/Daten/BW_Rdat/"
+list.files(path=url_Rdat)
+load(file.path(url_Rdat,"BW_list_tbl.RData"))
+summary(BW_list_tbl)
+comp_detect <- function(df,cmp) {
+exst<- cmp %in% names(df)
+return(exst)
+}
+# function for all stations
+plt_NO2_trnd <- function(df) {
+df<-df%>% as_tibble()
+ifelse (comp_detect(df,"NO2"),
+plt <-ggplot(df,aes(x= datetime,y=NO2))+
+geom_point(size = 0.001)+
+geom_smooth(method= "lm",col = "red")+
+ggtitle("NO2-immissions 20 years",
+subtitle = paste(first(df$name),first(df$station))),NA
+)
+ggsave(filename=paste0("NO2_trend_20y_",first(df$name),".png"),
+path = "figs/",
+plot = plt)
+return(plt)
+}
+print(plt_NO2_trnd(BW_list_tbl$Rt_leder))
+BW_list_tbl%>% map(plt_NO2_trnd)
+names(BW_list_tbl)
+BW_list_tbl$Stg_Klt%>% summary
+BW_list_tbl$Stg_Klt%>% filter(datetime >= ymd("2000-01-01"))%>% summary()
+rd_xlsx_lubw(path,"Klt_55006_NO2_00_21.xlsx")
+rd_xlsx_lubw<- function(path,dat.file){df<-read_xlsx(file.path(path,dat.file),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor(Messstelle),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Wert =as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,datetime,Wert)
+return(df)
+}
+rd_xlsx_lubw(path,"Klt_55006_NO2_00_21.xlsx")
+path<-"~/Documents/Luftqualitaet/Daten/BW"
+rd_xlsx_lubw(path,"Klt_55006_NO2_00_21.xlsx")
+rd_xlsx_lubw<- function(path,dat.file){df<-read_xlsx(file.path(path,dat.file),skip=10)%>%
+dplyr::select(c(1,2,4,5))%>%
+mutate(station=as_factor(Stationsnummer),
+name=as_factor(Messstelle),
+datetime= ymd_hm(`Datum / Uhrzeit`),
+Wert =as.numeric(str_replace(Wert,",",".")))%>%
+dplyr::select(station,name,datetime,Wert)
+return(df)
+}
+Klt_NO2<- rd_xlsx_lubw(path,"Klt_55006_NO2_00_21.xlsx")
+Klt_NO2
+Klt_NO2<- rd_xlsx_lubw(path,"Klt_55006_NO2_00_21.xlsx")%>% rename(NO2=Wert)
+Klt_NO<- rd_xlsx_lubw(path,"Klt_55006_NO_00_21.xlsx")%>% rename(NO=Wert)
+Klt_O3<- rd_xlsx_lubw(path,"Klt_55006_NO_00_21.xlsx")%>% rename(O3=Wert)
+Klt_CO<- rd_xlsx_lubw(path,"Klt_55006_CO_00_21.xlsx")%>% rename(CO=Wert)
+Klt_data <- left_join(Klt_NO2,Klt_NO)%>%
+left_join(Klt_O3)%>% left_join(Klt_CO)
+summary(Klt_data)
+Klt_data <- left_join(Klt_NO2,Klt_NO)%>%
+left_join(Klt_O3)%>% left_join(Klt_CO)%>%
+mutate(name= "Stgt_Klett")%>%
+dplyr::select(station,name,datetime,NO2,O3,NO,CO)
+summary(Klt_data)
+Klt_data <- left_join(Klt_NO2,Klt_NO)%>%
+left_join(Klt_O3)%>% left_join(Klt_CO)%>%
+mutate(name= "Stgt_Klett"%>% as_factor())%>%
+dplyr::select(station,name,datetime,NO2,O3,NO,CO)
+summary(Klt_data)
+BW_list_tbl$Stg_Klt <-Klt_data
+save (BW_list_tbl, file =file.path(url_Rdat,"BW_list_tbl.RData"))
+print(plt_NO2_trnd(BW_list_tbl$Stg_Klt))
+Hpt_NO2<-<- rd_xlsx_lubw(path,"Hpt_55006_NO2_00_21.xlsx")%>% rename(NO2=Wert)
+Hpt_NO2<- rd_xlsx_lubw(path,"Hpt_55006_NO2_00_21.xlsx")%>% rename(NO2=Wert)
+Hpt_NO2<- rd_xlsx_lubw(path,"Hpt_999136_NO2_15_21.xlsx")%>% rename(NO2=Wert)
+Hpt_NO2<- rd_xlsx_lubw(path,"Hpt_9999136_NO2_15_21.xlsx")%>% rename(NO2=Wert)
+Hpt_NO<- rd_xlsx_lubw(path,"Hpt_9999136_NO_15_21.xlsx")%>% rename(NO=Wert)
+Hpt_data<- left_join(Hpt_NO2,Hpt_NO)
+Hpt_data
+Hpt_data<- left_join(Hpt_NO2,Hpt_NO)%>%
+mutate(name= "Hauptst_str"%>% as_factor())%>%
+dplyr::select(station,name,datetime,NO2,NO)
+Hpt_data
+BW_list_tbl$Stg_Hpt <-Hpt_data
+#======
+save (BW_list_tbl, file =file.path(url_Rdat,"BW_list_tbl.RData"))
+plt_NO2_trnd(BW_list_tbl$Stg_Hpt)
+# Hohenheimerstr
+Hoh_NO2<- rd_xlsx_lubw(path,"Hoh_76362_NO2_00_21.xlsx")%>% rename(NO2=Wert)
+# Hohenheimerstr
+Hoh_NO2<- rd_xlsx_lubw(path,"Hoh_76362_NO2_03_21.xlsx")%>% rename(NO2=Wert)
+Hoh_NO<- rd_xlsx_lubw(path,"Hoh_76362_NO_03_21.xlsx")%>% rename(NO=Wert)
+Hoh_data<- left_join(Hpt_NO2,Hpt_NO)%>%
+mutate(name= "Hohenh_str"%>% as_factor())%>%
+dplyr::select(station,name,datetime,NO2,NO)
+BW_list_tbl$Stg_Hoh <-Hoh_data
+#======
+save (BW_list_tbl, file =file.path(url_Rdat,"BW_list_tbl.RData"))
+plt_NO2_trnd(BW_list_tbl$Stg_Hoh)
+# function for all stations
+plt_NO2_trnd <- function(df) {
+df<-df%>% as_tibble()
+ifelse (comp_detect(df,"NO2"),
+plt <-ggplot(df,aes(x= datetime,y=NO2))+
+geom_point(size = 0.001)+
+geom_smooth(method= "lm",col = "red")+
+ggtitle("NO2-immissions 20 years",
+subtitle = paste(first(df$name),first(df$station))),NA
+)
+ggsave(filename=paste0("NO2_trend_20y_",first(df$name),".png"),
+path = "figs/",
+plot = plt)
+}
+BW_list_tbl%>% map(plt_NO2_trnd)
+names(BW_list_tbl)
+BW_mean_NO2<-map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"NO2"),
+mean(x$NO2,na.rm=TRUE),NA)))
+BW_median_NO2<- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"NO2"),
+median(x$NO2,na.rm=TRUE),NA )))
+BW_var_NO2 <- map_dbl(BW_list_tbl, function(x) (ifelse (comp_detect (x,"NO2"),
+var(x$NO2,na.rm=TRUE),NA)))
+BW_mean_WG <- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"WG"),
+mean(x$WG,na.rm=TRUE),NA )))
+BW_var_WG <-map_dbl(BW_list_tbl,function(x) (ifelse(comp_detect (x,"WG"),
+var(x$WG,na.rm=TRUE),NA) ))
+# summary of mean and median NO2, WG
+BW_NO2_WG_summary<-BW_summary_statistic[-23,]%>% arrange(NO2_mean)%>% knitr::kable(digits=1)
+BW_statistic <- tibble (Station =  names(BW_list_tbl),
+NO2_mean=  BW_mean_NO2,
+NO2_median=BW_median_NO2,
+NO2_var =  BW_var_NO2,
+WG_mean =  BW_mean_WG,
+WG_var =   BW_var_WG,
+O3_mean =  BW_mean_O3,
+O3_median= BW_median_O3,
+O3_var =   BW_var_O3)
+# O3
+BW_mean_O3<-map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"O3"),
+mean(x$O3,na.rm=TRUE),NA)))
+BW_median_O3<- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"O3"),
+median(x$O3,na.rm=TRUE),NA )))
+BW_var_O3 <- map_dbl(BW_list_tbl, function(x) (ifelse (comp_detect (x,"O3"),
+var(x$O3,na.rm=TRUE),NA)))
+BW_mean_NO2<-map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"NO2"),
+mean(x$NO2,na.rm=TRUE),NA)))
+BW_median_NO2<- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"NO2"),
+median(x$NO2,na.rm=TRUE),NA )))
+BW_var_NO2 <- map_dbl(BW_list_tbl, function(x) (ifelse (comp_detect (x,"NO2"),
+var(x$NO2,na.rm=TRUE),NA)))
+BW_mean_WG <- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"WG"),
+mean(x$WG,na.rm=TRUE),NA )))
+BW_var_WG <-map_dbl(BW_list_tbl,function(x) (ifelse(comp_detect (x,"WG"),
+var(x$WG,na.rm=TRUE),NA) ))
+# O3
+BW_mean_O3<-map_dbl(BW_list_tbl , function(x) ( ifelse (comp_detect(x,"O3"),
+mean(x$O3,na.rm=TRUE),NA)))
+BW_median_O3<- map_dbl(BW_list_tbl,function(x) (ifelse (comp_detect (x,"O3"),
+median(x$O3,na.rm=TRUE),NA )))
+BW_var_O3 <- map_dbl(BW_list_tbl, function(x) (ifelse (comp_detect (x,"O3"),
+var(x$O3,na.rm=TRUE),NA)))
+BW_statistic <- tibble (Station =  names(BW_list_tbl),
+NO2_mean=  BW_mean_NO2,
+NO2_median=BW_median_NO2,
+NO2_var =  BW_var_NO2,
+WG_mean =  BW_mean_WG,
+WG_var =   BW_var_WG,
+O3_mean =  BW_mean_O3,
+O3_median= BW_median_O3,
+O3_var =   BW_var_O3)
+save(BW_statistic, file = file.path(url_Rdat,"BW_statistic.RData"))
+BW_statistic
+# summary of mean and median NO2, WG
+BW_NO2_WG_summary<-BW_statistic%>% arrange(NO2_mean)%>% knitr::kable(digits=1)
+BW_NO2_WG_summary
+# summary of mean and median NO2, WG
+BW_NO2_WG_summary<-BW_statistic%>% arrange(NO2_mean)%>% knitr::kable(digits=1)
+BW_NO2_WG_summary
+q(save = "no")
