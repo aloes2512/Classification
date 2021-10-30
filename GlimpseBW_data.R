@@ -1,26 +1,29 @@
 library(tidyverse)
 library(knitr)
-url_Rdat<- "~/Documents/Luftqualitaet/Daten/BW_Rdat/"
-list.files(path=url_Rdat)
-load(file.path(url_Rdat,"BW_list_tbl.RData"))
+library(lubridate)
+R_dat_path<- "~/Documents/Luftqualitaet/Daten/BW_Rdat/"
+list.files(path=R_dat_path)
+load(file.path(R_dat_path,"BW_list_tbl.RData"))
 summary(BW_list_tbl)
 comp_detect <- function(df,cmp) {
   exst<- cmp %in% names(df)
   return(exst)
 }
-# function for all stations
+# plot  function for all stations
 plt_NO2_trnd <- function(df) {
   df<-df%>% as_tibble()
   ifelse (comp_detect(df,"NO2"),
+          {df <- na.omit(df)
   plt <-ggplot(df,aes(x= datetime,y=NO2))+
     geom_point(size = 0.001)+
     geom_smooth(method= "lm",col = "red")+
     ggtitle("NO2-immissions 20 years",
-    subtitle = paste(first(df$name),first(df$station))),NA
+    subtitle = paste(first(df$name),first(df$station)))},NA
     )
   ggsave(filename=paste0("NO2_trend_20y_",first(df$name),".png"),
          path = "figs/",
          plot = plt)
+
  
 }
 plt_NO2_trnd(BW_list_tbl$Stg_Hoh)
@@ -57,5 +60,30 @@ BW_statistic <- tibble (Station =  names(BW_list_tbl),
                                 O3_median= BW_median_O3,
                                 O3_var =   BW_var_O3)
 # summary of mean and median NO2, WG
-BW_NO2_WG_summary<-BW_statistic%>% arrange(NO2_mean)%>% knitr::kable(digits=1)
-save(BW_statistic, file = file.path(url_Rdat,"BW_statistic.RData"))
+BW_statistic%>% arrange(NO2_mean)%>% knitr::kable(digits=1)
+save(BW_statistic, file= "BW_statistic.RData")
+# Linear Regression 
+# lineares Regressions- Modell
+stat.model <- function (df) {
+  lm(NO2 ~ datetime, data = df)
+}
+BW_station_names<-names(BW_list_tbl)
+BW_dat_dfr<-tibble()
+for (stnm in BW_station_names) {
+  
+  dfr <- BW_list_tbl[[stnm]]
+  if(NROW(dfr) >1)
+    BW_dat_dfr <- bind_rows(BW_dat_dfr,dfr)
+}
+BW_dat_dfr$name<- as_factor(BW_dat_dfr$name)
+BW_dat_dfr<-BW_dat_dfr %>% dplyr::select(name,datetime,NO2)
+
+summary(BW_dat_dfr)
+head(BW_dat_dfr)
+
+BW_dat_dfr%>%  ggplot()+
+  geom_smooth(method = "lm",mapping = aes(x= datetime,y=NO2,color=name), data =BW_dat_dfr)+
+  ggtitle("NO2 Immissionen
+  Trend (Regressionsgerade)" ,
+          subtitle= " 21 Stationen in BW")
+
