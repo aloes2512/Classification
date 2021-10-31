@@ -1,10 +1,16 @@
 library(tidyverse)
 library(knitr)
 library(lubridate)
-R_dat_path<- "~/Documents/Luftqualitaet/Daten/BW_Rdat/"
-list.files(path=R_dat_path)
-load(file.path(R_dat_path,"BW_list_tbl.RData"))
+BW_Rdat_path<- "~/Documents/Luftqualitaet/Daten/BW_Rdat/"
+list.files(path=BW_Rdat_path)
+load(file.path(BW_Rdat_path,"BW_list_tbl.RData"))
 summary(BW_list_tbl)
+str(BW_list_tbl,levels=2)
+station.names<-names(BW_list_tbl)
+rural.stations<- c("Alb","Odw","Sws")
+trafic.stations <- c("Lbg_Friedr","Nck","Rt_leder")
+urban.backgrd.stations<- station.names%>% setdiff(c(rural.stations,trafic.stations))
+
 comp_detect <- function(df,cmp) {
   exst<- cmp %in% names(df)
   return(exst)
