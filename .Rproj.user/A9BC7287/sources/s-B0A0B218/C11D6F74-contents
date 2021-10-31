@@ -1,9 +1,0 @@
-library(lubridate)
-url_Rdat<- "~/Documents/Luftqualitaet/Daten/BW_Rdat/"
-load(file.path(url_Rdat,"BW_list_tbl.RData"))
-BW_list_tbl$Rt_leder$datetime%>% range()
-head(BW.all_data$Rt$Rt.o3)
-BW.all_data$Rt%>% map_df(`[`)
-comp.names<- names(BW.all_data$Rt)
-out <- tibble(comp= comp.names)
-for (nm in seq_along(comp.names))
