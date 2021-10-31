@@ -47,3 +47,6 @@ po/*~
 
 #session Data
 .Rproj.user
+
+# pictures generated
+*.png
